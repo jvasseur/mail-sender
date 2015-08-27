@@ -1,0 +1,20 @@
+{
+    "name": "jvasseur/mail-sender",
+    "description": "Send mails with Swiftmailer and Twig",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jérôme Vasseur",
+            "email": "jerome.vasseur@jhome.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jvasseur\\MailSender\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.4"
+    }
+}
