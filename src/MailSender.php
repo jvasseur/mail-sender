@@ -48,12 +48,12 @@ class MailSender
         }
 
         if (isset($blocks['body_txt']) && isset($blocks['body_html'])) {
-            $mail->setBody($block['body_txt']);
-            $mail->addPart($block['body_html'], 'text/html');
+            $mail->setBody($blocks['body_txt']);
+            $mail->addPart($blocks['body_html'], 'text/html');
         } elseif (isset($blocks['body_txt'])) {
-            $mail->setBody($block['body_txt']);
+            $mail->setBody($blocks['body_txt']);
         } elseif (isset($blocks['body_html'])) {
-            $mail->setBody($block['body_html'], 'text/html');
+            $mail->setBody($blocks['body_html'], 'text/html');
         }
 
         $this->mailer->send($mail);
