@@ -10,11 +10,11 @@ class MailSender
     private $mailer;
 
     /**
-     * @var \Twig_Environement
+     * @var \Twig_Environment
      */
     private $twig;
 
-    public function __construct(\Swift_Mailer $mailer, \Twig_Environement $twig)
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig)
     {
         $this->mailer = $mailer;
         $this->twig = $twig;
