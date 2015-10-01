@@ -29,7 +29,7 @@ class MailSender
         $template = $this->twig->loadTemplate($name);
 
         $blocks = [];
-        foreach (['from', 'to', 'subject', 'body_txt', 'body_html'] as $blockName) {
+        foreach (['from', 'from_name', 'to', 'to_name', 'subject', 'body_txt', 'body_html'] as $blockName) {
             $rendered = $this->renderBlock($template, $blockName, $context);
 
             if ($rendered) {
@@ -41,10 +41,10 @@ class MailSender
 
         $mail = new \Swift_Message();
         $mail->setSubject($blocks['subject']);
-        $mail->setFrom($blocks['from']);
+        $mail->setFrom(isset($blocks['from_name']) ? [$blocks['from'] => $blocks['from_name']] : $blocks['from']);
 
         if (isset($blocks['to'])) {
-            $mail->setTo($blocks['to']);
+            $mail->setTo(isset($blocks['to_name']) ? [$blocks['to'] => $blocks['to_name']] : $blocks['to']);
         }
 
         if (isset($blocks['body_txt']) && isset($blocks['body_html'])) {
