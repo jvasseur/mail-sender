@@ -23,8 +23,9 @@ class MailSender
     /**
      * @param string $name
      * @param array  $context
+     * @param callable|null $callback a callback to modify the mail before it is sent.
      */
-    public function send($name, array $context = [])
+    public function send($name, array $context = [], callable $callback = null)
     {
         $template = $this->twig->loadTemplate($name);
 
@@ -54,6 +55,10 @@ class MailSender
             $mail->setBody($blocks['body_txt']);
         } elseif (isset($blocks['body_html'])) {
             $mail->setBody($blocks['body_html'], 'text/html');
+        }
+
+        if ($callback) {
+            $callback($mail);
         }
 
         $this->mailer->send($mail);
