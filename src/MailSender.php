@@ -24,6 +24,8 @@ class MailSender
      * @param string $name
      * @param array  $context
      * @param callable|null $callback a callback to modify the mail before it is sent.
+     *
+     * @return \Swift_Message
      */
     public function send($name, array $context = [], callable $callback = null)
     {
@@ -62,6 +64,8 @@ class MailSender
         }
 
         $this->mailer->send($mail);
+
+        return $mail;
     }
 
     /**
